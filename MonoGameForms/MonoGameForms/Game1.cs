@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace MonoGameForms
 {
     /// <summary>
@@ -11,6 +12,7 @@ namespace MonoGameForms
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        
 
         public Game1()
         {
