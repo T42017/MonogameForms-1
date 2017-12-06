@@ -27,6 +27,7 @@ namespace MonoGameForms
             // TODO: Add your initialization logic here
             label = new Label(this);
             label.Text = "hey";
+            
             Components.Add(label);
             base.Initialize();
         }
