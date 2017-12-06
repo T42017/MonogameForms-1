@@ -1,0 +1,113 @@
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoFormsLibrary;
+
+namespace MonoGameForms
+{
+    /// <summary>
+    ///     This is the main type for your game.
+    /// </summary>
+    public class Game1 : Game
+    {
+<<<<<<< HEAD
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        private Button knapp;
+        private SpriteFont font;
+        private Texture2D bild;
+=======
+        private SpriteFont font;
+        private GraphicsDeviceManager graphics;
+        private Label label;
+        private SpriteBatch spriteBatch;
+
+>>>>>>> origin/Label
+        public Game1()
+        {
+          
+           
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferHeight = 1500,
+                PreferredBackBufferWidth = 1000
+            };
+            Content.RootDirectory = "Content";
+        }
+
+
+        protected override void Initialize()
+        {
+<<<<<<< HEAD
+            knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.Green,Color.Cyan,Color.IndianRed,(sender, args) => Exit() );
+            Components.Add(knapp);
+            IsMouseVisible = true;
+=======
+            // TODO: Add your initialization logic here
+            label = new Label(this);
+            label.Text = "hey";
+            
+            Components.Add(label);
+>>>>>>> origin/Label
+            base.Initialize();
+        }
+
+
+        protected override void LoadContent()
+        {
+<<<<<<< HEAD
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+           
+         
+           
+            
+            // TODO: use this.Content to load your game content here
+=======
+            font = Content.Load<SpriteFont>("Font");
+            label.Font = font;
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+>>>>>>> origin/Label
+        }
+
+        protected override void UnloadContent()
+        {
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+<<<<<<< HEAD
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+          
+            // TODO: Add your update logic here
+=======
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                label.Text = "000000"
+                    ;
+
+>>>>>>> origin/Label
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+<<<<<<< HEAD
+            GraphicsDevice.Clear(Color.Beige);
+            spriteBatch.Begin();
+            spriteBatch.End();
+
+        
+=======
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            spriteBatch.End();
+>>>>>>> origin/Label
+            base.Draw(gameTime);
+        }
+    }
+}
