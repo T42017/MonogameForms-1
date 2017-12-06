@@ -10,5 +10,6 @@ namespace MonoFormsLibrary
 {
     public class Class1
     {
+        
     }
 }

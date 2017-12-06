@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Security.AccessControl;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoFormsLibrary;
 
 
 namespace MonoGameForms
@@ -12,12 +14,19 @@ namespace MonoGameForms
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        private Cursor cursor;
+        private KeyboardState _previousKeyboardState;
+
+        private Texture2D txture;
+
+        public int molested { get; set; }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
         }
 
         /// <summary>
@@ -29,6 +38,11 @@ namespace MonoGameForms
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            cursor = new Cursor(this);
+            cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
+            Components.Add(cursor);
+
+            
 
             base.Initialize();
         }
@@ -42,7 +56,9 @@ namespace MonoGameForms
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            //cursor.Texture = Content.Load<Texture2D>()
+
+            
         }
 
         /// <summary>
@@ -61,10 +77,16 @@ namespace MonoGameForms
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            var kbState = Keyboard.GetState();
 
-            // TODO: Add your update logic here
+            if (kbState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
+                cursor.Texture = Content.Load<Texture2D>("cursorSword_bronze");
+            else
+            {
+                cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
+            }
+
+            
 
             base.Update(gameTime);
         }
@@ -76,6 +98,11 @@ namespace MonoGameForms
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            
+
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
