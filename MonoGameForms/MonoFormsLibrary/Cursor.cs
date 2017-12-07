@@ -13,7 +13,7 @@ namespace MonoFormsLibrary
     public class Cursor : DrawableBaseComponent
     {
         public Texture2D Texture { get; set; }
-        public Vector2 pos;
+        private Vector2 _pos;
         private MouseState _mouseState;
 
 
@@ -31,7 +31,7 @@ namespace MonoFormsLibrary
         {
             SpriteBatch.Begin();
 
-            SpriteBatch.Draw(Texture, pos, Color.White);
+            SpriteBatch.Draw(Texture, _pos, Color.White);
 
             SpriteBatch.End();
 
@@ -42,7 +42,7 @@ namespace MonoFormsLibrary
         {
             _mouseState = Mouse.GetState();
 
-            pos = new Vector2(_mouseState.X, _mouseState.Y);
+            _pos = new Vector2(_mouseState.X, _mouseState.Y);
             base.Update(gameTime);
         }
     }
