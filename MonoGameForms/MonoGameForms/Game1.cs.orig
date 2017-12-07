@@ -1,13 +1,36 @@
+<<<<<<< HEAD
+﻿using System.Security.AccessControl;
+=======
 ﻿using System;
-using System.Security.AccessControl;
 using System.Collections.Generic;
+>>>>>>> Feature_list
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFormsLibrary;
+<<<<<<< HEAD
+
 
 namespace MonoGameForms
 {
+    public class Game1 : Game
+    {
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+
+        private Cursor cursor;
+        private KeyboardState _previousKeyboardState;
+
+        private Texture2D txture;
+
+        public int molested { get; set; }
+=======
+
+namespace MonoGameForms
+{
+    /// <summary>
+    ///     This is the main type for your game.
+    /// </summary>
     public class Game1 : Game
     {
         private SpriteFont font;
@@ -18,12 +41,7 @@ namespace MonoGameForms
         private Texture2D bild;
         private List<String> nene;
         private list list;
-        private Cursor cursor;
-        private KeyboardState _previousKeyboardState;
-
-        private Texture2D txture;
-
-        public int molested { get; set; }
+>>>>>>> Feature_list
 
         public Game1()
         {
@@ -37,11 +55,17 @@ namespace MonoGameForms
             Content.RootDirectory = "Content";
             
         }
+<<<<<<< HEAD
         protected override void Initialize()
         {
             cursor = new Cursor(this);
             cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
-            
+            Components.Add(cursor);
+=======
+
+
+        protected override void Initialize()
+        {
             nene=new List<string>();
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
@@ -49,18 +73,28 @@ namespace MonoGameForms
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
+>>>>>>> Feature_list
 
             list =new list(this,new Vector2(400,400),"File",nene,30,Color.Cyan );
             knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.Green,Color.Cyan,Color.IndianRed,(sender, args) => Exit() );
             label = new Label(this);
             label.Text = "hey";
             Components.Add(knapp);
+            IsMouseVisible = true;
             
             Components.Add(label);
             Components.Add(list);
-            Components.Add(cursor);
             base.Initialize();
         }
+<<<<<<< HEAD
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            //cursor.Texture = Content.Load<Texture2D>()
+=======
+
+
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
@@ -71,10 +105,12 @@ namespace MonoGameForms
          
            
             
+>>>>>>> Feature_list
         }
 
         protected override void UnloadContent()
         {
+<<<<<<< HEAD
 
         }
         
@@ -82,8 +118,6 @@ namespace MonoGameForms
         {
             var kbState = Keyboard.GetState();
 
-                label.Text = "000000";
-          
             if (kbState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
                 cursor.Texture = Content.Load<Texture2D>("cursorSword_bronze");
             else
@@ -96,12 +130,34 @@ namespace MonoGameForms
         
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Beige);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
             
 
             spriteBatch.End();
+
+            // TODO: Add your drawing code here
+=======
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+
+                label.Text = "000000";
+          
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Beige);
+            spriteBatch.Begin();
+            spriteBatch.End();
+>>>>>>> Feature_list
 
         
             base.Draw(gameTime);

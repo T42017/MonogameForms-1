@@ -42,11 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+<<<<<<< HEAD
+    <Compile Include="Class1.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="DrawableBaseComponent.cs" />
+=======
+    <Compile Include="Button.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="DrawableBaseComponent.cs" />
     <Compile Include="List.cs" />
+>>>>>>> Feature_list
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
