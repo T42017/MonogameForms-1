@@ -15,27 +15,35 @@ namespace MonoFormsLibrary
         private SpriteFont Font;
         private Vector2 pos;
         private int space;
-        private List<Label> _labels;
+        private List<string> _labels;
+        private Label label;
+        private Color Color;
+        
 
-        public list(Game game, Vector2 position, SpriteFont font, string[] list, int spaceBetweenText) : base(game)
+        public list(Game game, Vector2 position, string font, List<string> list, int spaceBetweenText,Color color) : base(game)
         {
-            Font = font;
+            Font = Game.Content.Load<SpriteFont>("font");
             pos = position;
             space = spaceBetweenText;
+            Color = color;
+            _labels = list;
 
-            if (list != null)
-            {
-                updatelist(list);
-            }
         }
 
-        public void updatelist(String[] list)
+        public override void Update(GameTime gameTime)  
+    {  base.Update(gameTime); }
+
+
+        public override void Draw(GameTime gameTime)
         {
-            _labels = new List<Label>();
-            for (int i = 0; i < list.Length; i++)
-                _labels.Add(new Label(Game,Font));
+            SpriteBatch.Begin();
+            for (int i = 0; i < _labels.Count; i++)
+            {
+              SpriteBatch.DrawString(Font,_labels[i],new Vector2(pos.X,pos.Y+(space*i)), Color);
+                
+            }
+            SpriteBatch.End();
+            base.Draw(gameTime);
         }
-
-       
     }
 }

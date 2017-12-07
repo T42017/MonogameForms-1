@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,14 +18,17 @@ namespace MonoGameForms
         private Label label;
         private SpriteBatch spriteBatch;
         private Texture2D bild;
+        private List<String> nene;
+        private list list;
+
         public Game1()
         {
           
            
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = 1500,
-                PreferredBackBufferWidth = 1000
+                PreferredBackBufferHeight = 720,
+                PreferredBackBufferWidth = 1280
             };
             Content.RootDirectory = "Content";
         }
@@ -32,6 +36,15 @@ namespace MonoGameForms
 
         protected override void Initialize()
         {
+            nene=new List<string>();
+            nene.Add("Lots of ppl waving");
+            nene.Add("Lots of ppl waving");
+            nene.Add("Lots of ppl waving");
+            nene.Add("Lots of ppl waving");
+            nene.Add("Lots of ppl waving");
+            nene.Add("Lots of ppl waving");
+
+            list =new list(this,new Vector2(400,400),"File",nene,30,Color.Cyan );
             knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.Green,Color.Cyan,Color.IndianRed,(sender, args) => Exit() );
             label = new Label(this);
             label.Text = "hey";
@@ -39,6 +52,7 @@ namespace MonoGameForms
             IsMouseVisible = true;
             
             Components.Add(label);
+            Components.Add(list);
             base.Initialize();
         }
 

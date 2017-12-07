@@ -72,6 +72,33 @@ namespace MonoFormsLibrary
             GotText = false;
 
         }
+        public Button(Game game, Vector2 positon, int sizex,int sizey, string buttontext, string fontname
+            , Color buttoncolor, Color buttoncolorhighlight, Color textcolor, Color textbcolor, EventHandler clickEvent) 
+            :this(game, positon, sizex, sizey, clickEvent)
+        {
+            b = textbcolor;
+            c = textbcolor;
+            Texturecolor = buttoncolor;
+            TexturecolorHighlight = buttoncolorhighlight;
+            Buttontext = buttontext;
+            Font = Game.Content.Load<SpriteFont>(fontname);
+            GotText = true;
+        }
+
+        public Button(Game game, Vector2 positon, int sizex, int sizey, EventHandler clickEvent) : base(game)
+        {
+            b = Color.Black;
+            c = Color.Black;
+            Texturecolor = Color.GhostWhite;
+            TexturecolorHighlight = Color.White;
+            buttonevent = clickEvent;
+            pos = positon;
+            texture = new Texture2D(GraphicsDevice,sizex,sizey);
+            sizex1 = texture.Width;
+            sizey1 = texture.Height;
+            GotText = false;
+
+        }
 
 
 
