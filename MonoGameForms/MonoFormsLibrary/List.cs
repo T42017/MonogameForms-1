@@ -9,15 +9,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoFormsLibrary
 {
-    public class List:DrawableBaseComponent
+    public class list:DrawableBaseComponent
     {
 
         private SpriteFont Font;
         private Vector2 pos;
         private int space;
-        private List _labels;
+        private List<Label> _labels;
 
-        public List(Game game, Vector2 position, SpriteFont font, string[] list, int spaceBetweenText) : base(game)
+        public list(Game game, Vector2 position, SpriteFont font, string[] list, int spaceBetweenText) : base(game)
         {
             Font = font;
             pos = position;
@@ -31,9 +31,9 @@ namespace MonoFormsLibrary
 
         public void updatelist(String[] list)
         {
-            _labels = new List<UiLabel>();
+            _labels = new List<Label>();
             for (int i = 0; i < list.Length; i++)
-                _labels.Add(new UiLabel(Game, Position + new Vector2(0, _spaceBetweenLabels * i) - Globals.HalfScreenSize, list[i], _font));
+                _labels.Add(new Label(Game,Font));
         }
 
        

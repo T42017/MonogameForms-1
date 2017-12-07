@@ -14,7 +14,6 @@ namespace MonoGameForms
         private SpriteFont font;
         private GraphicsDeviceManager graphics;
         private Button knapp;
-        private SpriteFont font;
         private Label label;
         private SpriteBatch spriteBatch;
         private Texture2D bild;
@@ -64,8 +63,8 @@ namespace MonoGameForms
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
-                label.Text = "000000"
-                    ;
+
+                label.Text = "000000";
           
 
             base.Update(gameTime);

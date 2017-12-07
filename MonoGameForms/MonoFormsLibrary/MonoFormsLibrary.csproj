@@ -45,6 +45,7 @@
     <Compile Include="Button.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="DrawableBaseComponent.cs" />
+    <Compile Include="List.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

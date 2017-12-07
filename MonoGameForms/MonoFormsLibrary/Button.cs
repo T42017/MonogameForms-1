@@ -100,13 +100,13 @@ namespace MonoFormsLibrary
             {
                 SpriteBatch.Draw(texture,pos,TexturecolorHighlight);
                 if(GotText==true)
-                SpriteBatch.DrawString(Font,Buttontext,pos + textSize *2, b);
+                SpriteBatch.DrawString(Font,Buttontext, pos + new Vector2(texture.Width / 2 - (textSize.X / 2), texture.Height / 2 - (textSize.Y / 2)), b);
             }
             else
             {
               SpriteBatch.Draw(texture,pos,Texturecolor);
                 if (GotText == true)
-             SpriteBatch.DrawString(Font, Buttontext,pos + textSize *2, c);
+             SpriteBatch.DrawString(Font,Buttontext,pos+new Vector2(texture.Width/2-(textSize.X/2), texture.Height/2-(textSize.Y/2)) ,c) ;
             }
             SpriteBatch.End();
             base.Draw(gameTime);
