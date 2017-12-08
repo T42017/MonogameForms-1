@@ -21,13 +21,15 @@ namespace MonoFormsLibrary
         private SpriteFont Font;
         private string Buttontext;
         private int sizex1, sizey1, sizex2, sizey2;
+
+        private float Scale;
         //private KeyboardState _keyboardState = Keyboard.GetState(), _lastKeyboardState;
 
 
 
 
         public Button(Game game, Vector2 positon, string buttontext, string fontname,String texturename
-            ,Color texturecolor, Color texturecolorhighlight, Color textcolor, Color textbcolor, EventHandler clickEvent) : base(game)
+            ,Color texturecolor, Color texturecolorhighlight, Color textcolor, Color textbcolor, EventHandler clickEvent, float scale) : base(game)
         {
             b = textbcolor;
             c = textbcolor;
@@ -41,8 +43,9 @@ namespace MonoFormsLibrary
             sizex1 = texture.Width;
             sizey1 = texture.Height;
             GotText = true;
+            Scale = scale;
         }
-        public Button(Game game, Vector2 positon, string buttontext, string fontname, String texturename, EventHandler clickEvent) : base(game)
+        public Button(Game game, Vector2 positon, string buttontext, string fontname, String texturename, EventHandler clickEvent, float scale) : base(game)
         {
             b = Color.Black;
             c = Color.Black;
@@ -56,9 +59,9 @@ namespace MonoFormsLibrary
             sizex1 = texture.Width;
             sizey1 = texture.Height;
             GotText = true;
-
+            Scale = scale;
         }
-        public Button(Game game, Vector2 positon, String texturename, EventHandler clickEvent) : base(game)
+        public Button(Game game, Vector2 positon, String texturename, EventHandler clickEvent, float scale) : base(game)
         {
             b = Color.Black;
             c = Color.Black;
@@ -70,11 +73,12 @@ namespace MonoFormsLibrary
             sizex1 = texture.Width;
             sizey1 = texture.Height;
             GotText = false;
+            Scale = scale;
 
         }
         public Button(Game game, Vector2 positon, int sizex,int sizey, string buttontext, string fontname
-            , Color buttoncolor, Color buttoncolorhighlight, Color textcolor, Color textbcolor, EventHandler clickEvent) 
-            :this(game, positon, sizex, sizey, clickEvent)
+            , Color buttoncolor, Color buttoncolorhighlight, Color textcolor, Color textbcolor, EventHandler clickEvent, float scale) 
+            :base(game)
         {
             b = textbcolor;
             c = textbcolor;
@@ -83,9 +87,10 @@ namespace MonoFormsLibrary
             Buttontext = buttontext;
             Font = Game.Content.Load<SpriteFont>(fontname);
             GotText = true;
+            Scale = scale;
         }
 
-        public Button(Game game, Vector2 positon, int sizex, int sizey, EventHandler clickEvent) : base(game)
+        public Button(Game game, Vector2 positon, int sizex, int sizey, EventHandler clickEvent, float scale) : base(game)
         {
             b = Color.Black;
             c = Color.Black;
@@ -97,6 +102,7 @@ namespace MonoFormsLibrary
             sizex1 = texture.Width;
             sizey1 = texture.Height;
             GotText = false;
+            Scale = scale;
 
         }
 
@@ -107,7 +113,7 @@ namespace MonoFormsLibrary
             lastState = state;
             state = Mouse.GetState();
 
-            if (state.X>=pos.X && state.Y >= pos.Y && state.X <= (pos.X+sizex1) && state.Y <= (pos.Y + sizey1))
+            if (state.X>=pos.X && state.Y >= pos.Y && state.X <= (pos.X+(sizex1*Scale)) && state.Y <= (pos.Y + (sizey1 * Scale)))
                 IsHighlighted = true;
             else
                 IsHighlighted = false;
@@ -125,15 +131,15 @@ namespace MonoFormsLibrary
             SpriteBatch.Begin();
             if (IsHighlighted == true)
             {
-                SpriteBatch.Draw(texture,pos,TexturecolorHighlight);
+                SpriteBatch.Draw(texture,pos,null,TexturecolorHighlight,0f,Vector2.Zero, Scale,SpriteEffects.None,0f);
                 if(GotText==true)
-                SpriteBatch.DrawString(Font,Buttontext, pos + new Vector2(texture.Width / 2 - (textSize.X / 2), texture.Height / 2 - (textSize.Y / 2)), b);
+                SpriteBatch.DrawString(Font,Buttontext, pos + new Vector2((texture.Width*Scale) / 2 - (textSize.X / 2), (texture.Height*Scale) / 2 - (textSize.Y / 2)), b);
             }
             else
             {
-              SpriteBatch.Draw(texture,pos,Texturecolor);
+              SpriteBatch.Draw(texture, pos, null, Texturecolor, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
                 if (GotText == true)
-             SpriteBatch.DrawString(Font,Buttontext,pos+new Vector2(texture.Width/2-(textSize.X/2), texture.Height/2-(textSize.Y/2)) ,c) ;
+             SpriteBatch.DrawString(Font,Buttontext,pos+new Vector2((texture.Width * Scale)/2 - (textSize.X/2), (texture.Height * Scale) / 2-(textSize.Y/2)) ,c) ;
             }
             SpriteBatch.End();
             base.Draw(gameTime);

@@ -60,9 +60,9 @@ namespace MonoGameForms
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
-            radio=new RadioButton(this,50,"succ","sacc",new Vector2(700,300),baba,font,40 );
+            radio=new RadioButton(this,50,"succ","sacc",new Vector2(700,300),baba,font,40 ,0.5f);
             list =new list(this,new Vector2(400,400),"File",nene,30,Color.Cyan );
-            knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.Green,Color.Cyan,Color.IndianRed,(sender, args) => Exit() );
+            knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.WhiteSmoke,Color.Cyan,Color.IndianRed,(sender, args) => Exit(),0.5f );
             label = new Label(this);
             label.Text = "hey";
             Components.Add(knapp);
@@ -106,7 +106,6 @@ namespace MonoGameForms
             {
                 cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
             }
-
             base.Update(gameTime);
         }
         

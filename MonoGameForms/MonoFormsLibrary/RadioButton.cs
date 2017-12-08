@@ -20,9 +20,10 @@ namespace MonoFormsLibrary
         private List<string> Text;
         private List<Rectangle> rekt;
         private MouseState mus,premus;
+        private float Scale;
 
         public RadioButton(Game game,int spaceBetweenButton,string texture,string texturepicked,Vector2 position,List<string> text,SpriteFont font,
-            int SpaceTextAndbutton) : base(game)
+            int SpaceTextAndbutton,float scale) : base(game)
         {
             Texture=Game.Content.Load<Texture2D>(texture);
             Texturep = Game.Content.Load<Texture2D>(texturepicked);
@@ -33,13 +34,14 @@ namespace MonoFormsLibrary
             Font = font;
             choosen = 2;
             rekt = new List<Rectangle>();
+            Scale = scale;
         }
 
         protected override void LoadContent()
         {
             for (int i = 0; i < Text.Count; i++)
             {
-               rekt.Add(new Rectangle((int)pos.X, (int)pos.Y+(spacebetweenb*i), (int)Texture.Width, (int)Texture.Height));
+               rekt.Add(new Rectangle((int)pos.X, (int)pos.Y+(spacebetweenb*i), (int)(Texture.Width* Scale), (int)(Texture.Height* Scale)));
             }
            
             base.LoadContent();
@@ -81,14 +83,14 @@ namespace MonoFormsLibrary
             {
                 if (choosen == i)
                 {
-                    SpriteBatch.Draw(Texturep, new Vector2(pos.X, pos.Y + (spacebetweenb*i)), Color.WhiteSmoke);
-                    SpriteBatch.DrawString(Font, Text[i], new Vector2(pos.X + Texture.Width + spacetext, pos.Y+(spacebetweenb * i)),
+                    SpriteBatch.Draw(Texturep, new Vector2(pos.X, pos.Y + (spacebetweenb*i)), null,Color.WhiteSmoke,0f,Vector2.Zero, Scale,SpriteEffects.None,0f);
+                    SpriteBatch.DrawString(Font, Text[i], new Vector2(pos.X + (Texture.Width*Scale) + spacetext, pos.Y+(spacebetweenb * i)),
                         Color.Black);
                 }
                 else
                 {
-                    SpriteBatch.Draw(Texture, new Vector2(pos.X, pos.Y + (spacebetweenb * i)), Color.WhiteSmoke);
-                    SpriteBatch.DrawString(Font, Text[i], new Vector2(pos.X + Texture.Width + spacetext, pos.Y+(spacebetweenb * i)), Color.Black);                    
+                    SpriteBatch.Draw(Texture, new Vector2(pos.X, pos.Y + (spacebetweenb * i)), null, Color.WhiteSmoke, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
+                    SpriteBatch.DrawString(Font, Text[i], new Vector2(pos.X + (Texture.Width*Scale) + spacetext, pos.Y+(spacebetweenb * i)), Color.Black);                    
                 }
             }
             SpriteBatch.End();
