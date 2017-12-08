@@ -1,47 +1,48 @@
-<<<<<<< HEAD
-﻿using System.Security.AccessControl;
-=======
 ﻿using System;
+<<<<<<< HEAD
+using System.Security.AccessControl;
 using System.Collections.Generic;
->>>>>>> Feature_list
+using System.Security.Policy;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using MonoFormsLibrary;
+=======
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoFormsLibrary;
+
+>>>>>>> origin/Feature_-_TextBax
+
+namespace MonoGameForms
+{
+    public class Game1 : Game
+    {
 <<<<<<< HEAD
-
-
-namespace MonoGameForms
-{
-    public class Game1 : Game
-    {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        private Cursor cursor;
-        private KeyboardState _previousKeyboardState;
-
-        private Texture2D txture;
-
-        public int molested { get; set; }
-=======
-
-namespace MonoGameForms
-{
-    /// <summary>
-    ///     This is the main type for your game.
-    /// </summary>
-    public class Game1 : Game
-    {
         private SpriteFont font;
         private GraphicsDeviceManager graphics;
         private Button knapp;
         private Label label;
         private SpriteBatch spriteBatch;
         private Texture2D bild;
-        private List<String> nene;
+        private List<String> nene,baba;
         private list list;
->>>>>>> Feature_list
+        private Cursor cursor;
+        private KeyboardState _previousKeyboardState;
+        private Song meme;
+        private RadioButton radio;
+        private Texture2D txture;
+        private CheckBox boxen;
+        public int molested { get; set; }
 
         public Game1()
         {
@@ -52,115 +53,154 @@ namespace MonoGameForms
                 PreferredBackBufferHeight = 720,
                 PreferredBackBufferWidth = 1280
             };
+=======
+        
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        private MouseGrab _mouseGrab;
+        public TextBox _textBox;
+        
+        public Game1()
+        {
+            _textBox = new TextBox();
+            graphics = new GraphicsDeviceManager(this);
+>>>>>>> origin/Feature_-_TextBax
             Content.RootDirectory = "Content";
             
         }
-<<<<<<< HEAD
         protected override void Initialize()
         {
+<<<<<<< HEAD
             cursor = new Cursor(this);
             cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
-            Components.Add(cursor);
-=======
-
-
-        protected override void Initialize()
-        {
-            nene=new List<string>();
+            font = Content.Load<SpriteFont>("Font");
+            baba =new List<string>();
+            baba.Add("adolf");
+            baba.Add("hadolf");
+            baba.Add("adolf");
+            baba.Add("adolf");
+            baba.Add("adolf");
+            baba.Add("adolf1");
+            nene =new List<string>();
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
             nene.Add("Lots of ppl waving");
->>>>>>> Feature_list
-
+            radio=new RadioButton(this,50,"succ","sacc",new Vector2(700,300),baba,font,40 ,0.5f);
             list =new list(this,new Vector2(400,400),"File",nene,30,Color.Cyan );
-            knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.Green,Color.Cyan,Color.IndianRed,(sender, args) => Exit() );
+            knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.WhiteSmoke,Color.Cyan,Color.IndianRed,(sender, args) => Exit(),0.5f );
             label = new Label(this);
             label.Text = "hey";
+            boxen=new CheckBox(this,"Checkbox","CheckboxChecked",new Vector2(500,100),"Kazza",font,30,0.2f );
+            Components.Add(boxen);
             Components.Add(knapp);
-            IsMouseVisible = true;
-            
+            MediaPlayer.IsRepeating = true;
             Components.Add(label);
+           
             Components.Add(list);
-            base.Initialize();
-        }
-<<<<<<< HEAD
-        protected override void LoadContent()
-        {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //cursor.Texture = Content.Load<Texture2D>()
+            Components.Add(radio);
+            Components.Add(cursor);
+            
 =======
+            // TODO: Add your initialization logic here
+>>>>>>> origin/Feature_-_TextBax
+            base.Initialize();
+            _textBox.PositionRec = new Vector2(0,0);
+            _textBox.StringTyper = new StringBuilder("");
+            IsMouseVisible = true;
+            _mouseGrab = new MouseGrab();
+            _textBox.TextBoxArea = new Texture2D(GraphicsDevice, 1, 1);
+            _textBox.TextBoxArea.SetData(new[] { Color.White });
 
-
+        }
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
             label.Font = font;
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-           
-         
-           
-            
->>>>>>> Feature_list
+            _textBox.font = Content.Load<SpriteFont>("Font");
+            // Create a 1px square rectangle texture that will be scaled to the
+            // desired size and tinted the desired color at draw time
+
+            meme = Content.Load<Song>("A");
+          
+
+
+
         }
 
         protected override void UnloadContent()
         {
-<<<<<<< HEAD
 
         }
         
         protected override void Update(GameTime gameTime)
         {
+<<<<<<< HEAD
+            MediaPlayer.Play(meme);
             var kbState = Keyboard.GetState();
 
+                label.Text = "000000";
+          
             if (kbState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
                 cursor.Texture = Content.Load<Texture2D>("cursorSword_bronze");
             else
             {
                 cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
             }
-
             base.Update(gameTime);
         }
         
+=======
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+            // TODO: Add your update logic here
+
+            _textBox.TypeInTextBox();
+            _textBox.clickArea = _textBox.TextBoxArea.Bounds;
+            _mouseGrab.mousePosition = new Vector2(_mouseGrab._mouseState.Position.X, _mouseGrab._mouseState.Position.Y);
+            if (_textBox.clickArea.Contains(_mouseGrab.mousePosition))
+            {
+                _textBox.PositionRec = _mouseGrab.mousePosition;
+            }
+            base.Update(gameTime);
+        }
+
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+>>>>>>> origin/Feature_-_TextBax
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Beige);
 
             spriteBatch.Begin();
             
 
+<<<<<<< HEAD
             spriteBatch.End();
-
-            // TODO: Add your drawing code here
-=======
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
-
-                label.Text = "000000";
-          
-
-            base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.Beige);
-            spriteBatch.Begin();
-            spriteBatch.End();
->>>>>>> Feature_list
 
         
             base.Draw(gameTime);
         }
     }
 }
+=======
+            spriteBatch.Begin();
+            
+
+            spriteBatch.Draw(_textBox.TextBoxArea, new Rectangle((int)_textBox.PositionRec.X, (int)_textBox.PositionRec.Y, (int)_textBox.font.MeasureString(_textBox.StringTyper).X, (int)_textBox.font.MeasureString(_textBox.StringTyper).Y), Color.Bisque);
+            spriteBatch.DrawString(_textBox.font, _textBox.StringTyper.ToString(), _textBox.PositionRec , Color.Black);
+            spriteBatch.End();
+
+
+            base.Draw(gameTime);
+        }
+    }
+    
+}
+>>>>>>> origin/Feature_-_TextBax

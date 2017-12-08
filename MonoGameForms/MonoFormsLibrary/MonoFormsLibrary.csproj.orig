@@ -43,16 +43,22 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
-    <Compile Include="Class1.cs" />
-    <Compile Include="Cursor.cs" />
-    <Compile Include="DrawableBaseComponent.cs" />
-=======
     <Compile Include="Button.cs" />
+    <Compile Include="CheckBox.cs" />
+    <Compile Include="Cursor.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="DrawableBaseComponent.cs" />
     <Compile Include="List.cs" />
->>>>>>> Feature_list
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadioButton.cs" />
+=======
+    <Compile Include="BaseUIComponent.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="MouseGrab.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBox.cs" />
+    <Compile Include="UiTextbox.cs" />
+>>>>>>> origin/Feature_-_TextBax
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

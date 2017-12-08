@@ -2,10 +2,17 @@
 using System.Security.AccessControl;
 using System.Collections.Generic;
 using System.Security.Policy;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoFormsLibrary;
 using Microsoft.Xna.Framework.Media;
 using MonoFormsLibrary;
 
@@ -16,6 +23,8 @@ namespace MonoGameForms
         private SpriteFont font;
         private GraphicsDeviceManager graphics;
         private Button knapp;
+        private MouseGrab _mouseGrab;
+        public TextBox _textBox;
         private Label label;
         private SpriteBatch spriteBatch;
         private Texture2D bild;
@@ -28,10 +37,10 @@ namespace MonoGameForms
         private Texture2D txture;
         private CheckBox boxen;
         public int molested { get; set; }
-
+        
         public Game1()
         {
-          
+            _textBox = new TextBox();
            
             graphics = new GraphicsDeviceManager(this)
             {
@@ -76,12 +85,22 @@ namespace MonoGameForms
             Components.Add(cursor);
             
             base.Initialize();
+            _textBox.PositionRec = new Vector2(0,0);
+            _textBox.StringTyper = new StringBuilder("");
+            IsMouseVisible = true;
+            _mouseGrab = new MouseGrab();
+            _textBox.TextBoxArea = new Texture2D(GraphicsDevice, 1, 1);
+            _textBox.TextBoxArea.SetData(new[] { Color.White });
+
         }
         protected override void LoadContent()
         {
             font = Content.Load<SpriteFont>("Font");
             label.Font = font;
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            _textBox.font = Content.Load<SpriteFont>("Font");
+            // Create a 1px square rectangle texture that will be scaled to the
+            // desired size and tinted the desired color at draw time
 
             meme = Content.Load<Song>("A");
           
@@ -99,7 +118,6 @@ namespace MonoGameForms
         {
             MediaPlayer.Play(meme);
             var kbState = Keyboard.GetState();
-
                 label.Text = "000000";
           
             if (kbState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
@@ -108,9 +126,17 @@ namespace MonoGameForms
             {
                 cursor.Texture = Content.Load<Texture2D>("cursorGauntlet_blue");
             }
+            _textBox.TypeInTextBox();
+            _textBox.clickArea = _textBox.TextBoxArea.Bounds;
+            _mouseGrab.mousePosition = new Vector2(_mouseGrab._mouseState.Position.X, _mouseGrab._mouseState.Position.Y);
+            if (_textBox.clickArea.Contains(_mouseGrab.mousePosition))
+            {
+                _textBox.PositionRec = _mouseGrab.mousePosition;
+            }
             base.Update(gameTime);
         }
         
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Beige);
@@ -121,7 +147,16 @@ namespace MonoGameForms
             spriteBatch.End();
 
         
+            spriteBatch.Begin();
+            
+
+            spriteBatch.Draw(_textBox.TextBoxArea, new Rectangle((int)_textBox.PositionRec.X, (int)_textBox.PositionRec.Y, (int)_textBox.font.MeasureString(_textBox.StringTyper).X, (int)_textBox.font.MeasureString(_textBox.StringTyper).Y), Color.Bisque);
+            spriteBatch.DrawString(_textBox.font, _textBox.StringTyper.ToString(), _textBox.PositionRec , Color.Black);
+            spriteBatch.End();
+
+
             base.Draw(gameTime);
         }
     }
+    
 }
