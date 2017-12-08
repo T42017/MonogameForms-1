@@ -26,7 +26,7 @@ namespace MonoGameForms
         private Song meme;
         private RadioButton radio;
         private Texture2D txture;
-
+        private CheckBox boxen;
         public int molested { get; set; }
 
         public Game1()
@@ -65,6 +65,8 @@ namespace MonoGameForms
             knapp = new Button(this, new Vector2(200, 200), "succ", "File", "button", Color.White, Color.WhiteSmoke,Color.Cyan,Color.IndianRed,(sender, args) => Exit(),0.5f );
             label = new Label(this);
             label.Text = "hey";
+            boxen=new CheckBox(this,"Checkbox","CheckboxChecked",new Vector2(500,100),"Kazza",font,30,0.2f );
+            Components.Add(boxen);
             Components.Add(knapp);
             MediaPlayer.IsRepeating = true;
             Components.Add(label);

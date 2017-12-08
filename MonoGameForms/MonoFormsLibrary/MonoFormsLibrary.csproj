@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="CheckBox.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="DrawableBaseComponent.cs" />
