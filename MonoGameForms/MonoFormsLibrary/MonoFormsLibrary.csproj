@@ -43,16 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
-    <Compile Include="BaseUIComponent.cs" />
     <Compile Include="CheckBox.cs" />
-    <Compile Include="MouseGrab.cs" />
+    <Compile Include="Cursor.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="DrawableBaseComponent.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioButton.cs" />
     <Compile Include="TextBox.cs" />
-    <Compile Include="UiTextbox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

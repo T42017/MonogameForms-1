@@ -23,7 +23,7 @@ namespace MonoGameForms
         private SpriteFont font;
         private GraphicsDeviceManager graphics;
         private Button knapp;
-        private MouseGrab _mouseGrab;
+       
         public TextBox _textBox;
         private Label label;
         private SpriteBatch spriteBatch;
@@ -85,10 +85,8 @@ namespace MonoGameForms
             Components.Add(cursor);
             
             base.Initialize();
-            _textBox.PositionRec = new Vector2(0,0);
+            _textBox.PositionRec = new Vector2(0,400);
             _textBox.StringTyper = new StringBuilder("");
-            IsMouseVisible = true;
-            _mouseGrab = new MouseGrab();
             _textBox.TextBoxArea = new Texture2D(GraphicsDevice, 1, 1);
             _textBox.TextBoxArea.SetData(new[] { Color.White });
 
@@ -128,11 +126,7 @@ namespace MonoGameForms
             }
             _textBox.TypeInTextBox();
             _textBox.clickArea = _textBox.TextBoxArea.Bounds;
-            _mouseGrab.mousePosition = new Vector2(_mouseGrab._mouseState.Position.X, _mouseGrab._mouseState.Position.Y);
-            if (_textBox.clickArea.Contains(_mouseGrab.mousePosition))
-            {
-                _textBox.PositionRec = _mouseGrab.mousePosition;
-            }
+           
             base.Update(gameTime);
         }
         

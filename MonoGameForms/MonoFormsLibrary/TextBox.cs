@@ -40,12 +40,12 @@ namespace MonoFormsLibrary
 
             try
             {
-                if (StringTyper.Length == StringTyper.Capacity -1)
+                if (StringTyper.Length >= StringTyper.Capacity -1)
                 {
                     StringTyper.AppendLine("");
                     stringCapacity += 20;
                 }
-                else if (oldState.IsKeyDown(keys[0]) != keyboardState.IsKeyDown(keys[0]) && StringTyper.Length < StringTyper.Capacity && !keys.Contains(Keys.Back))
+                else if (oldState.IsKeyDown(keys[0]) != keyboardState.IsKeyDown(keys[0]) && StringTyper.Length < StringTyper.Capacity && !keys.Contains(Keys.Back) && !keys.Contains(Keys.Enter))
                 {
 
                     if (keys.Length > 0)
